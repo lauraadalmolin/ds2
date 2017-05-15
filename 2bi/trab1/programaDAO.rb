@@ -4,7 +4,7 @@ require './programa.rb'
 class ProgramaDAO
 	  
     def initialize
-		@con = PG.connect :dbname => 'radio_web', :user => 'postgres', :password => '1234', :host => 'localhost'
+		@con = PG.connect :dbname => 'radio_web', :user => 'postgres', :password => 'postgres', :host => 'localhost'
     end
 
     def busca(id_p)
@@ -40,7 +40,7 @@ class ProgramaDAO
     end
 
     def edita(pro)
-	  	rs = @con.exec_params("UPDATE programas SET nome = $1, id_c = $2, duracao = $3, dias_da_semana = $4, hora_inicio = $5, hora_fim = $6  WHERE id_p = $7", [pro.nome, pro.id_c, pro.duracao, pro.dias_da_semana, pro.hora_inicio, pro.hora_fim, pro.id_p])
+	  	rs = @con.exec_params("UPDATE programas SET nome = $1, duracao = $2, dias_da_semana = $3, hora_inicio = $4, hora_fim = $5  WHERE id_p = $6", [pro.nome, pro.duracao, pro.dias_da_semana, pro.hora_inicio, pro.hora_fim, pro.id_p])
     end
 
     def adiciona(pro)    	   

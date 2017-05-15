@@ -5,7 +5,7 @@ require './programaDAO.rb'
 class ComunicadorDAO
 	  
     def initialize
-		@con = PG.connect :dbname => 'radio_web', :user => 'postgres', :password => '1234', :host => 'localhost'
+		@con = PG.connect :dbname => 'radio_web', :user => 'postgres', :password => 'postgres', :host => 'localhost'
     end
 
     def busca(id_c)
