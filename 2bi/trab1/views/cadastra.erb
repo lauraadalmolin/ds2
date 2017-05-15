@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<link rel='stylesheet' type='text/css' href='./css/estilo.css'>
+	<link rel="stylesheet" href="./bootstrap/css/bootstrap.min.css"/>
+	<title>Adicionar Comunicador</title>
+</head>
+<body>
+	<ul class="nav nav-tabs">
+		<li role="presentation"><a href="/">Início</a></li>
+		<li role="presentation" class="active"><a href="/cadastra">Cadastrar</a></li>
+		<li role="presentation"><a href="/programacao">Programação</a></li>
+		<li role="presentation"><a href="/lista_comunicadores">Listar Comunicadores</a></li>
+		<li role="presentation"><a href="/lista_programas">Listar Programas</a></li>
+
+	</ul>
+	<br>
+	<div class="container">
+        <div class='row'>
+        	<div class="col-lg-12"> 
+				<div class="panel panel-default">
+					<div class="panel-heading center">
+						Adicionar Comunicador
+					</div>
+					<div class="panel-body center">
+						<%= @m %>
+						<form action='/adicionar_comunicador' method='post'>
+							<div class="input-group col-lg-12">
+							  <input type="text" class="form-control" placeholder="Nome" name='nome' aria-describedby="basic-addon3">
+							</div>
+							<br>
+						<input type='submit' class="btn btn-info">
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class='row'>
+        	<div class="col-lg-12"> 
+				<div class="panel panel-default">
+					<div class="panel-heading center">
+						Adicionar Programa
+					</div>
+					<div class="panel-body center">
+						<!--<%= @m %>-->
+						<form action='/adicionar_programa' method='post'>
+							<div class="input-group col-lg-12">
+							  <input type="text" class="form-control" placeholder="Nome" name='nome' aria-describedby="basic-addon3">
+							  <input type="number" class="form-control" placeholder="ID Comunicador" name='id_c' aria-describedby="basic-addon3">
+							  <input type="number" class="form-control" placeholder="Duração (em minutos)" name='duracao' aria-describedby="basic-addon3">
+							  <input type="text" class="form-control" placeholder="Dias da Semana (dias da semana que o programa vai ao ar)" name='dias_da_semana' aria-describedby="basic-addon3">
+							  <input type="number" class="form-control" placeholder="Hora Inicial (em números apenas: 00-24)" name='hora_inicio' aria-describedby="basic-addon3">
+							  <input type="number" class="form-control" placeholder="Hora Final (em números apenas: 00-24)" name='hora_fim' aria-describedby="basic-addon3">
+							</div>
+							<br>
+						<input type='submit' class="btn btn-info">
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+
+
+</body>
+</html>
+

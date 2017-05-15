@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel='stylesheet' type='text/css' href='./css/estilo.css'>
+	<title>Qualquer coisa</title>
+</head>
+<body>
+	<%= @m %>
+	<form action='/alterar' method='post'>
+		Nome: <input type='text' name='nome' value="<%= @animal.nome %>"><br>
+		Espécie: <input type='text' name='especie' value="<%= @animal.especie %>">
+		<input type='hidden' name='id' value="<%= @animal.id %>">
+	<input type='submit'>
+</form>
+	<a href="/listar">Listar</a>
+	<button onclick="location.href='/listar'">Listar</button>
+
+
+</body>
+</html>
+

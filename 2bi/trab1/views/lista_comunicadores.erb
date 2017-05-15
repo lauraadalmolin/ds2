@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset='utf-8'>
+	<link rel='stylesheet' type='text/css' href='./css/estilo.css'>
+	<link rel="stylesheet" href="./bootstrap/css/bootstrap.min.css"/>
+	<title>Lista de Comunicadores</title>
+</head>
+<body>
+	<ul class="nav nav-tabs">
+		<li role="presentation"><a href="/">Início</a></li>
+		<li role="presentation"><a href="/cadastra">Cadastrar</a></li>
+		<li role="presentation"><a href="/programacao">Programação</a></li>
+		<li role="presentation" class="active"><a href="/lista_comunicadores">Listar Comunicadores</a></li>
+		<li role="presentation"><a href="/lista_programas">Listar Programas</a></li>
+
+	</ul>
+	<br>
+	<div class="container">
+        <div class='row'>
+        	<div class="col-lg-12"> 
+        		<div class="panel panel-default">
+					<div class="panel-heading center">
+						Lista de Comunicadores
+					</div>
+					<div class="panel-body center">
+						<table class='table'>
+							<tr>
+								<td></td>
+								<td></td>
+								<td>Nome</td>
+								<td>ID</td>
+							</tr>
+							<% @vetcomunicador.each do |comunicador| %>
+							<tr> 
+								<td> <a href='/exclui_comunicador/<%= comunicador.id_c%>'><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a></td>
+								<td> <a href='/tela_altera_comunicador/<%= comunicador.id_c%>'><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a></td>
+								<td><%= comunicador.nome %></td>
+								<td><%= comunicador.id_c %></td>
+								
+							</tr>
+							<% end %>
+						</table>
+					</div>
+				</div>				
+			</div>
+		</1div>
+	</div>
+</body>
+</html>
