@@ -1,0 +1,49 @@
+<div class='row'>
+	<div class="col-lg-12"> 
+		<div class="panel panel-default">
+			<div class="panel-heading center">
+				Adicionar Comunicador
+			</div>
+			<div class="panel-body center">
+				<%= @m %>
+				<form action='/admin/adicionar_comunicador' method='post' enctype='multipart/form-data'>
+					<div class="input-group col-lg-12">
+					  <input required type="text" class="form-control" placeholder="Nome" name='nome' aria-describedby="basic-addon3">
+					  <br> 
+					  Imagem do Comunicador
+					  <input required type='file' name='file' placeholder="Imagem do Comunicador">
+					</div>
+					<br>
+				<input type='submit' class="btn btn-info">
+				</form>
+			</div>
+		</div>
+	</div>
+	</div>
+<div class='row'>
+	<div class="col-lg-12"> 
+		<div class="panel panel-default">
+			<div class="panel-heading center">
+				Adicionar Programa
+			</div>
+			<div class="panel-body center">
+				<!--<%= @m %>-->
+				<form action='/admin/adicionar_programa' method='post' enctype='multipart/form-data'>
+					<div class="input-group col-lg-12">
+					  <input required type="text" class="form-control" placeholder="Nome" name='nome' aria-describedby="basic-addon3">
+					  <input required type="number" class="form-control" placeholder="ID Comunicador" name='id_c' aria-describedby="basic-addon3">
+					  <input required type="number" class="form-control" placeholder="Duração (em minutos)" name='duracao' aria-describedby="basic-addon3">
+					  <input required type="text" class="form-control" placeholder="Dias da Semana (dias da semana que o programa vai ao ar)" name='dias_da_semana' aria-describedby="basic-addon3">
+					  <input required type="number" class="form-control" placeholder="Hora Inicial (em números apenas: 00-24)" name='hora_inicio' aria-describedby="basic-addon3">
+					  <input required type="number" class="form-control" placeholder="Hora Final (em números apenas: 00-24)" name='hora_fim' aria-describedby="basic-addon3">
+					   <br> 
+					  Imagem do Comunicador
+					  <input type='file' name='file' placeholder="Imagem do Comunicador">
+					</div>
+					<br>
+				<input type='submit' class="btn btn-info">
+				</form>
+			</div>
+		</div>
+	</div>
+</div>

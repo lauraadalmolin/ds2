@@ -1,0 +1,28 @@
+<div class='row'>
+	<div class="col-lg-12"> 
+		<div class="panel panel-default">
+			<div class="panel-heading center">
+				Programação
+			</div>
+			<div class="panel-body">
+				<ul class='list-group'>
+					<% @vetcomunicador.each do |comunicador| %>
+						<li class="list-group-item">Nome do comunicador: <%= comunicador.nome %></li>
+						<li class="list-group-item">Id do comunicador: <%= comunicador.id_c %></li>
+						<li class="list-group-item"><% comunicador.programas.each do |programa| %>
+							<ul class='list-group'>
+								<li class="list-group-item">Nome do programa: <%= programa.nome %></li>
+								<li class="list-group-item">Id do programa: <%= programa.id_p %></li>
+								<li class="list-group-item">Duração do programa: <%= programa.duracao %></li>
+								<li class="list-group-item">Dias da semana em que o programa vai ao ar: <%= programa.dias_da_semana %></li>
+								<li class="list-group-item">Hora de início do programa: <%= programa.hora_inicio %></li>
+								<li class="list-group-item">Hora de término do programa: <%= programa.hora_fim %></li>
+							</ul>
+							<% end %>
+						</li>
+					<% end %>
+				</ul>
+			</div>
+		</div>				
+	</div>
+</div>

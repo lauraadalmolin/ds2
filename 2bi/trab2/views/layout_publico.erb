@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Radio Web</title>
+	<meta charset='utf-8'>
+	<link rel='stylesheet' type='text/css' href='./../css/estilo.css'>
+
+	<link rel="stylesheet" href="./../bootstrap/css/bootstrap.min.css"/>
+
+</head>
+<body>
+	<ul class="nav nav-tabs">
+		<li role="presentation" class="active"><a href="/">Início</a></li>
+		<% if (session[:logado] == true) %>
+
+		<li role="presentation"><a href="/admin/cadastra">Cadastrar</a></li>
+		<% end %>
+		<li role="presentation"><a href="/programacao">Programação</a></li>
+		<li role="presentation"><a href="/lista_comunicadores">Listar Comunicadores</a></li>
+		<li role="presentation"><a href="/lista_programas">Listar Programas</a></li>
+		<% if (session[:logado] == true) %>
+		<li role="presentation"><a href="/logout">Logout</a></li>
+		<% else %>
+		<li role="presentation"><a href="/tela_login">Login</a></li>
+	
+		<% end %>		
+	</ul>
+	<br>
+	<div class="container">
+   		<%= yield %>
+	</div>
+</body>
+</html>
