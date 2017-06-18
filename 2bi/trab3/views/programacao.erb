@@ -9,21 +9,22 @@
 
 			</div>
 			<div class="panel-body">
-				Hora atual: <span id='time'></span>
+				<h4>Hora atual: <span id='time'></span></h4>
 				<br>
-				<br>
+				
+				
 				<ul class='list-group'>
 					<% @vetcomunicador.each do |comunicador| %>
-						<li class="list-group-item">Nome do comunicador: <%= comunicador.nome %></li>
-						<li class="list-group-item">Id do comunicador: <%= comunicador.id_c %></li>
+						<li class="list-group-item"><b>Nome do comunicador:</b> <%= comunicador.nome %></li>
+						<li class="list-group-item"><b>Id do comunicador:</b> <%= comunicador.id_c %></li>
 						<li class="list-group-item"><% comunicador.programas.each do |programa| %>
 							<ul class='list-group'>
-								<li class="list-group-item">Nome do programa: <%= programa.nome %></li>
-								<li class="list-group-item">Id do programa: <%= programa.id_p %></li>
-								<li class="list-group-item">Duração do programa: <%= programa.duracao %></li>
-								<li class="list-group-item">Dias da semana em que o programa vai ao ar: <%= programa.dias_da_semana %></li>
-								<li class="list-group-item">Hora de início do programa: <%= programa.hora_inicio %></li>
-								<li class="list-group-item">Hora de término do programa: <%= programa.hora_fim %></li>
+								<li class="list-group-item"><b>Nome do programa:</b> <%= programa.nome %></li>
+								<li class="list-group-item"><b>Id do programa:</b> <%= programa.id_p %></li>
+								<li class="list-group-item"><b>Duração do programa:</b> <%= programa.duracao %></li>
+								<li class="list-group-item"><b>Dias da semana em que o programa vai ao ar:</b> <%= programa.dias_da_semana %></li>
+								<li class="list-group-item"><b>Hora de início do programa:</b> <%= programa.hora_inicio %></li>
+								<li class="list-group-item"><b>Hora de término do programa:</b> <%= programa.hora_fim %></li>
 							</ul>
 							<% end %>
 						</li>
@@ -33,6 +34,7 @@
 		</div>				
 	</div>
 </div>
+<script src="./../../jquery-3.2.1.min.js"></script>
 
 <script>
 	window.onload = function() {
@@ -41,5 +43,12 @@
 		var time = date.toLocaleTimeString();
 		document.getElementById('time').innerHTML =  time;
 	}	
-
+	function getWeather() {
+		$(document).ready(function(){
+		$.getJSON("http://api.openweathermap.org/data/2.5/weather?zip=02878,us",function(result){
+		    var message = ("Weather: "+ result.weather[0].main);
+		    document.getElementById("temp").innerHTML = message;
+		    });
+		});
+	}
 </script>

@@ -6,6 +6,11 @@
 			</div>
 			<div class="panel-body center">
 				Você está ouvindo: Shape of You - Ed Sheeran<br><br>
+				<input class='form-control' placeholder='Buscar comunicador' type="text" id="campoBuscar">
+				<br>
+				<button onclick="buscar()" id='btn' class='btn btn-default'>Buscar</button>
+				<br><br>
+				<div class="alert alert-info" role="alert" id="msg1" style='display:none;'></div>
 				<table class='table'>
 					<tr>
 						<td></td>
@@ -32,4 +37,26 @@
 <script>
 	var audio = new Audio('./../../shapeofyou.mp3');
 	audio.play();
+</script>
+<script src="./../../jquery-3.2.1.min.js"></script>
+
+
+<script>
+	function buscar() {
+		var nome = document.getElementById("campoBuscar").value;
+		//alert(nome);			
+
+		$.get("/admin/buscar_comunicador/" + nome, function(data) {
+			//alert(JSON.parse(data));
+			document.getElementById('msg1').style.display = "block";
+			if(JSON.parse(data) == true) {
+				//alert("oi");
+	            document.getElementById('msg1').innerHTML = "Há um comunicador com esse nome";
+			} else {
+				document.getElementById('msg1').innerHTML = "Não há um comunicador com esse nome";
+			}
+		});
+	      
+	}
+		
 </script>

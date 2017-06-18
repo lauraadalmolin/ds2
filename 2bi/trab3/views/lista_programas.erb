@@ -8,6 +8,11 @@
 			O número de programas cadastrados é: <span id='mostra'></span>
 			<br>
 			<br>
+			<input class='form-control' placeholder='Buscar programa' type="text" id="campoBuscar">
+			<br>
+			<button onclick="buscar()" id='btn' class='btn btn-default'>Buscar</button>
+			<br><br>
+			<div class="alert alert-info" role="alert" id="msg1" style='display:none;'></div>
 				<table class='table'>
 					<tr>
 						<td></td>
@@ -47,6 +52,29 @@
 	    count--;
 	    document.getElementById("mostra").innerHTML = count;
 	}
-	count();
+	//count();
 
+</script>
+
+<script src="./../../jquery-3.2.1.min.js"></script>
+
+
+<script>
+	function buscar() {
+		var nome = document.getElementById("campoBuscar").value;
+		//alert(nome);			
+
+		$.get("/admin/buscar_programa/" + nome, function(data) {
+			//alert(JSON.parse(data));
+			document.getElementById('msg1').style.display = "block";
+			if(JSON.parse(data) == true) {
+				//alert("oi");
+	            document.getElementById('msg1').innerHTML = "Há um programa com esse nome";
+			} else {
+				document.getElementById('msg1').innerHTML = "Não há um programa com esse nome";
+			}
+		});
+	      
+	}
+		
 </script>

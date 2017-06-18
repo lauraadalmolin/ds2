@@ -1,30 +1,4 @@
-<script>
-	function time(){
-	    var today = new Date();
-	    var h = today.getHours()
-	  	if (h > 12) {
-	  		h = h - "12";
-	  	}
-	  	var m = today.getMinutes();
-	  	var s = today.getSeconds();
-	 	m = checkTime(m);
-	 	s = checkTime(s);
-		var r = parseInt(s) * 1;
-	  	var g = parseInt(s) * 3;
-	  	var b = parseInt(s) * 5;
-	  	document.getElementById("divao").style.backgroundColor = 'rgb(' + r + ',' + g + ',' + b + ')';
-	  	var t = setTimeout(time, 500);
-	}
 
-	function checkTime(i) {
-	    if (i < 10) {
-	    	i = "0" + i;
-	    }
-	    return i;
-	}
-
-	time();
-</script>
 <br>	
 <div class='row'>
 	<div class="col-lg-12"> 
@@ -34,20 +8,43 @@
 			</div>
 			<div class="panel-body center">
 				<%= @m %>
+				
+						
 				<form action='/admin/adicionar_comunicador' method='post' enctype='multipart/form-data'>
 					<div class="input-group col-lg-12">
-					  <input required type="text" class="form-control" placeholder="Nome" name='nome' aria-describedby="basic-addon3">
-					  <br> 
-					  Imagem do Comunicador
-					  <input required type='file' name='file' placeholder="Imagem do Comunicador">
+						
+						<input required type="text" class="form-control" placeholder="Nome" id='1' name='nome' aria-describedby="basic-addon3">
+						<br>
+						<br>
+						
+						<br> 
+						Imagem do Comunicador
+						<input required type='file' name='file' placeholder="Imagem do Comunicador">
 					</div>
 					<br>
-				<input type='submit' class="btn btn-info">
+					<input type='submit' class="btn btn-info">
 				</form>
 			</div>
 		</div>
 	</div>
+</div>
+<div class='row'>
+	<div class="col-lg-12"> 
+		<div class="panel panel-default">
+			<div class="panel-heading center">
+				Pesquisar o ID do comunicador
+			</div>
+			<div class="panel-body center">
+				<input class='form-control' placeholder='Nome do comunicador' type="text" id="campoBuscar">
+				<br>
+				<button onclick="buscar()" id='btn' class='btn btn-default'>Buscar</button>
+				<br><br>
+				<div class="alert alert-info" role="alert" id="msg1" style='display:none;'></div>
+				
+			</div>
+		</div>
 	</div>
+</div>
 <div class='row'>
 	<div class="col-lg-12"> 
 		<div class="panel panel-default">
@@ -58,21 +55,66 @@
 				<!--<%= @m %>-->
 				<form action='/admin/adicionar_programa' method='post' enctype='multipart/form-data'>
 					<div class="input-group col-lg-12">
-					  <input required type="text" class="form-control" placeholder="Nome" name='nome' aria-describedby="basic-addon3">
-					  <input required type="number" class="form-control" placeholder="ID Comunicador" name='id_c' aria-describedby="basic-addon3">
-					  <input required type="number" class="form-control" placeholder="Duração (em minutos)" name='duracao' aria-describedby="basic-addon3">
-					  <input required type="text" class="form-control" placeholder="Dias da Semana (dias da semana que o programa vai ao ar)" name='dias_da_semana' aria-describedby="basic-addon3">
-					  <input required type="number" class="form-control" placeholder="Hora Inicial (em números apenas: 00-24)" name='hora_inicio' aria-describedby="basic-addon3">
-					  <input required type="number" class="form-control" placeholder="Hora Final (em números apenas: 00-24)" name='hora_fim' aria-describedby="basic-addon3">
-					   <br> 
-					  Imagem do Comunicador
-					  <input type='file' name='file' placeholder="Imagem do Comunicador">
+						<input required type="text" class="form-control" id='2' placeholder="Nome" name='nome' aria-describedby="basic-addon3">
+						<input required type="number" class="form-control" placeholder="ID Comunicador" name='id_c' aria-describedby="basic-addon3">
+						<input required type="number" class="form-control" placeholder="Duração (em minutos)" name='duracao' aria-describedby="basic-addon3">
+						<input required type="text" class="form-control" placeholder="Dias da Semana (dias da semana que o programa vai ao ar)" name='dias_da_semana' aria-describedby="basic-addon3">
+						<input required type="number" class="form-control" placeholder="Hora Inicial (em números apenas: 00-24)" name='hora_inicio' aria-describedby="basic-addon3">
+						<input required type="number" class="form-control" placeholder="Hora Final (em números apenas: 00-24)" name='hora_fim' aria-describedby="basic-addon3">
+						<br> 
+						Imagem do Comunicador
+						<input type='file' name='file' placeholder="Imagem do Comunicador">
 					</div>
 					<br>
-				<input type='submit' class="btn btn-info">
+					<input type='submit' class="btn btn-info">
 				</form>
 			</div>
 		</div>
 	</div>
 </div>
+<script>
+	function time(){
+		var today = new Date();
+		var h = today.getHours()
+		if (h > 12) {
+			h = h - "12";
+		}
+		var m = today.getMinutes();
+		var s = today.getSeconds();
+		m = checkTime(m);
+		s = checkTime(s);
+		var r = parseInt(s) * 1;
+		var g = parseInt(s) * 3;
+		var b = parseInt(s) * 5;
+		document.getElementById("divao").style.backgroundColor = 'rgb(' + r + ',' + g + ',' + b + ')';
+		var t = setTimeout(time, 500);
+	}
+
+	function checkTime(i) {
+		if (i < 10) {
+			i = "0" + i;
+		}
+		return i;
+	}
+
+	time();
+</script>
+<script src="./../../jquery-3.2.1.min.js"></script>
+
+<script>
+	function buscar() {
+		var nome = document.getElementById("campoBuscar").value;
+		//alert(nome);			
+
+		$.get("/admin/buscar_idcom/" + nome, function(data) {
+			//alert(JSON.parse(data));
+			document.getElementById('msg1').style.display = "block";		
+	        document.getElementById('msg1').innerHTML = data;
+			
+		});
+	      
+	}
+		
+</script>
+
 

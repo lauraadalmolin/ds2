@@ -23,6 +23,22 @@ class ProgramaDAO
     	pro
     end
 
+    def busca_n(nome)
+      rs = @con.exec_params("SELECT * FROM programas WHERE nome LIKE $1", [nome])
+      pro = Programa.new
+      rs.each do |registro|
+          pro.id_c = registro['id_c'].to_i
+          pro.id_p = registro['id_p'].to_i
+          pro.nome = registro['nome'].to_s          
+          pro.duracao = registro['duracao'].to_i          
+          pro.dias_da_semana = registro['dias_da_semana'].to_s          
+          pro.hora_inicio = registro['hora_inicio'].to_i         
+          pro.hora_fim = registro['hora_fim'].to_i  
+          pro.imagem = registro['imagem'].to_s    
+      end 
+      pro
+    end
+
     def buscaCom(id_c)
       rs = @con.exec_params("SELECT * FROM programas WHERE id_c = $1", [id_c])
       vetpro = []

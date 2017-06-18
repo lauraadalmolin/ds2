@@ -12,7 +12,7 @@ enable :sessions
 
 before '/admin/*' do
   if ((session[:logado].nil?) || session[:logado] == false)
-  	halt 404, 'sai da ai...'
+  	halt 404, 'Você não pode acessar essa página sem logar'
   end
 end
 
@@ -49,6 +49,37 @@ end
 
 get '/admin/' do
 	erb :index
+end
+
+get '/admin/buscar_comunicador/:campo' do
+	dao = ComunicadorDAO.new
+	com = dao.busca_n(params['campo'])
+	if (com.nome == params['campo']) 
+		return "true"
+	else
+		return "false"			
+	end
+end
+
+get '/admin/buscar_idcom/:campo' do
+	dao = ComunicadorDAO.new
+	com = dao.busca_n(params['campo'])
+	if (com.nome == params['campo']) 
+		retorno = "O id referente é: " + com.id_c.to_s 
+		return retorno
+	else
+		return "Não foi encontrado comunicador com o nome informado"			
+	end
+end
+
+get '/admin/buscar_programa/:campo' do
+	dao = ProgramaDAO.new
+	pro = dao.busca_n(params['campo'])
+	if (pro.nome == params['campo']) 
+		return "true"
+	else
+		return "false"			
+	end
 end
 
 get '/admin/cadastra' do

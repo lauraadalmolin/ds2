@@ -21,6 +21,19 @@ class ComunicadorDAO
     	com
     end
 
+    def busca_n(nome)
+      rs = @con.exec_params("SELECT * FROM comunicadores WHERE nome LIKE $1", [nome])
+      com = Comunicador.new
+      rs.each do |registro|
+          com.id_c = registro['id_c'].to_i
+          com.nome = registro['nome'].to_s
+          com.imagem = registro['imagem'].to_s        
+      end
+      dao = ProgramaDAO.new
+      com.programas = dao.buscaCom(com.id_c)
+      com
+    end
+
     def edita(com)
 	  	rs = @con.exec_params("UPDATE comunicadores SET nome = $1 WHERE id_c = $2", [com.nome, com.id_c])
     end
