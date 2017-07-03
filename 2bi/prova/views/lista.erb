@@ -1,0 +1,53 @@
+<div class='row'>
+	<div class="col-lg-12"> 
+		<div class="panel panel-default">
+			<div class="panel-heading center">
+				Lista de Presentes
+			</div>
+			<div class="panel-body center">
+				<button onclick="buscar()" id='btn' class='btn btn-default'>Buscar os últimos 3 presentes cadastrados</button><br><br>
+				<div class="alert alert-info" role="alert" id="msg1" style='display:none;'></div>
+				<p>Preço máximo: <%= @max%></p>
+				<p>Preço mínimo: <%= @min%></p>
+				<p>Preço médio: <%= @avg %></p>
+				<table class='table'>
+					<tr>
+						<td></td>
+						<td>Imagem</td>
+						<td>Nome</td>
+						<td>Preço</td>
+						<td>ID</td>
+					</tr>
+					<% @vetpresente.each do |presente| %>
+					<tr> 
+						<td> <a href='/exclui/<%= presente.id%>'><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a></td>
+						<td><img src=imagens/presente/<%= presente.imagem %> width='200px'><br></td>
+						<td><%= presente.nome %></td>
+						<td><%= presente.preco %></td>
+						<td><%= presente.id %></td>
+						
+					</tr>
+					<% end %>
+				</table>
+			</div>
+		</div>				
+	</div>
+</div>
+
+<script src="./../../jquery-3.2.1.min.js"></script>
+
+
+<script>
+	function buscar() {
+
+		$.get("/busca", function(data) {
+			//alert(JSON.parse(data));
+			document.getElementById('msg1').style.display = "block";
+			document.getElementById('msg1').innerHTML = data;
+
+			
+		});
+	      
+	}
+		
+</script>

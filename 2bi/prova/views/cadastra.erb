@@ -1,0 +1,78 @@
+
+<br>	
+<div class='row'>
+	<div class="col-lg-12"> 
+		<div class="panel panel-default">
+			<div class="panel-heading center">
+				Adicionar Presente
+			</div>
+			<div class="panel-body center">
+				<%= @m %>
+				
+						
+				<form action='/adicionar_presente' method='post' enctype='multipart/form-data'>
+					<div class="input-group col-lg-12">
+						
+						<input required type="text" class="form-control" placeholder="Nome" id='1' name='nome' aria-describedby="basic-addon3">
+						<input required type="text" class="form-control" placeholder="Preco" id='2' name='preco' aria-describedby="basic-addon3">
+						<br>
+						<br>
+						
+						<br> 
+						Imagem do Comunicador
+						<input required type='file' name='file' placeholder="Imagem do Comunicador">
+					</div>
+					<br>
+					<input type='submit' class="btn btn-info">
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script>
+	function time(){
+		var today = new Date();
+		var h = today.getHours()
+		if (h > 12) {
+			h = h - "12";
+		}
+		var m = today.getMinutes();
+		var s = today.getSeconds();
+		m = checkTime(m);
+		s = checkTime(s);
+		var r = parseInt(s) * 1;
+		var g = parseInt(s) * 3;
+		var b = parseInt(s) * 5;
+		document.getElementById("divao").style.backgroundColor = 'rgb(' + r + ',' + g + ',' + b + ')';
+		var t = setTimeout(time, 500);
+	}
+
+	function checkTime(i) {
+		if (i < 10) {
+			i = "0" + i;
+		}
+		return i;
+	}
+
+	time();
+</script>
+<script src="./../../jquery-3.2.1.min.js"></script>
+
+<script>
+	function buscar() {
+		var nome = document.getElementById("campoBuscar").value;
+		//alert(nome);			
+
+		$.get("/admin/buscar_idcom/" + nome, function(data) {
+			//alert(JSON.parse(data));
+			document.getElementById('msg1').style.display = "block";		
+	        document.getElementById('msg1').innerHTML = data;
+			
+		});
+	      
+	}
+		
+</script>
+
+
