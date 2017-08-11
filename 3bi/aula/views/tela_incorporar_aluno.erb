@@ -1,0 +1,9 @@
+<form action='/incorporar_aluno' method="post">
+	<% @vetAluno.each do |aluno| %>
+	<select name='aluno_id'>
+		<option value='<%= aluno.id %>'><%=  aluno.nome %></option>
+	</select>
+	<% end %>
+	<input type="hidden" name='atendimento_id' value="<%= @atendimento_id %>">
+	<input type="submit">
+</form>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Alterar aluno</title>
+</head>
+<body>
+	<form method="post" action="/editar_aluno">
+		Nome: <input type="text" name="nome" value='<%= @aluno.nome %>'>
+		<br>
+		<input type="hidden" name="id" value='<%= @aluno.id %>'>
+		<br>
+		<select name='professor_id'>
+			<% @vetProfessor.each do |professor| %>
+				<% if professor.id != @aluno.professor.id %>
+					<option value="<%=professor.id%>"> <%=professor.nome%> </option>
+				<% else %>
+					<option value="<%=professor.id%>"> <%=professor.nome%> </option>
+				<% end %>
+			<% end %>
+		</select>
+		<input type="submit" value="Submitar">
+	</form>
+</body>
+</html>

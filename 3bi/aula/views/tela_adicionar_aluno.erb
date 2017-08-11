@@ -1,0 +1,17 @@
+<html>
+<head>
+	<title>Adiciona Aluno</title>
+</head>
+<body>
+	<form method="post" action="/adicionar_aluno">
+		Nome: <input type="text" name="nome">
+		<br>
+		<select name='professor_id'>
+			<% @vetProfessor.each do |professor| %>
+				<option value="<%=professor.id%>"> <%=professor.nome%> </option>
+			<% end %>
+		</select>
+		<input type="submit" value="Submitar">
+	</form>
+</body>
+</html>
