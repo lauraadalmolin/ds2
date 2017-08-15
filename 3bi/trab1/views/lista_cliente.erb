@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Lista de Clientes</title>
+</head>
+<body>	
+	<table style='border: 1px solid; text-align: center;'>
+		<thead>
+			<tr>
+				<td style='border: 1px solid;'> Id </td>
+				<td style='border: 1px solid;'> Nome </td>
+				<td style='border: 1px solid;'> CPF </td>
+				<td style='border: 1px solid;'> Comanda Aberta </td>
+				<td>  </td>
+				<td>  </td>
+
+			</tr>
+		</thead>
+		<% @vetCliente.each do |cliente| %>
+			<tr>
+				<td style='border: 1px solid;'><%=cliente.idCliente%></td>
+				<td style='border: 1px solid;'><%=cliente.nome%></td>
+				<td style='border: 1px solid;'><%=cliente.cpf%></td>
+				<td style='border: 1px solid;'><%=cliente.comandaAberta%></td>
+				<td style='border: 1px solid;'><a href="/exclui_cliente/<%=cliente.idCliente%>">Excluir</td>
+				<td style='border: 1px solid;'><a href="/edita_cliente/<%=cliente.idCliente%>">Editar</td>
+			</tr>
+
+		<% end %>
+	</table>
+
+</body>
+</html>

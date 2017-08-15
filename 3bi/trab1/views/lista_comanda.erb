@@ -1,0 +1,41 @@
+<html>
+	<head>
+		<title>Lista de Garcom</title>
+	</head>
+<body>	
+	<table style="border: 1px solid; text-align: center;">
+		<thead>
+			<tr>
+				<td style="border: 1px solid;"> Id </td>
+				<td style="border: 1px solid;"> Cliente </td>
+				<td style="border: 1px solid;"> Garçom </td>
+				<td style="border: 1px solid;"> Encerrada </td>
+				<td style="border: 1px solid;"> Data-Hora Abertura </td>
+				<td style="border: 1px solid;"> Data-Hora Fechamento </td>
+				<td style="border: 1px solid;"> Produtos</td>
+				<td>  </td>
+				<td>  </td>
+
+			</tr>
+		</thead>
+		<% @vetComanda.each do |comanda| %>
+			<tr>
+				<td style="border: 1px solid;"><%=comanda.idComanda%></td>
+				<td style="border: 1px solid;"><%=comanda.cliente.nome%>-<%=comanda.cliente.cpf%></td>
+				<td style="border: 1px solid;"><%=comanda.garcom.nome%>-<%=comanda.garcom.cpf%></td>
+				<td style="border: 1px solid;"><%=comanda.encerrada%></td>
+				<td style="border: 1px solid;"><%=comanda.dataAbertura%></td>
+				<td style="border: 1px solid;"><%=comanda.dataEncerramento%></td>
+				<td style="border: 1px solid;">
+					<% comanda.produtos.each do |produto| %>
+					   	<%= produto.descricao%> | Preço:R$<%=produto.preco%><br>
+					 <% end %>
+				</td>
+				<td style="border: 1px solid;"><a href="/exclui_comanda/<%=comanda.idComanda%>">Excluir</td>
+				<td style="border: 1px solid;"><a href="/edita_comanda/<%=comanda.idComanda%>">Editar</td>
+			</tr>
+		<% end %>
+	</table>
+
+</body>
+</html>

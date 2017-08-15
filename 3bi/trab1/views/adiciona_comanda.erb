@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Adicionar Comanda</title>
+</head>
+<body>
+	<% if @vetCliente.size != 0 && @vetGarcom.size != 0 %>
+	<form method="post" action="/salva_comanda">
+		
+			Cliente
+			<select name='idCliente'>
+				<% @vetCliente.each do |cliente| %>
+				<option value='<%= cliente.idCliente %>'><%=  cliente.nome %>-<%= cliente.cpf %></option>
+				<% end %>
+			</select>
+		
+			Garçom
+			<select name='idGarcom'>
+				<% @vetGarcom.each do |garcom| %><br>
+				<option value='<%= garcom.idGarcom %>'><%=  garcom.nome %>-<%= garcom.cpf %></option>
+				<% end %>
+			</select>
+		
+		
+		<br>
+		
+		Data-Hora Abertura
+		<input required type='datetime-local' name='dataAbertura'><br>
+		Data-Hora Fechamento
+		<input type='datetime-local' name='dataEncerramento'>
+		<input type="submit" value="Enviar">			
+	</form>
+	<% else %>
+		<p>Impossível criar uma comanda (não há garçons ou clientes)</p>
+	<% end %>
+</body>
+</html>

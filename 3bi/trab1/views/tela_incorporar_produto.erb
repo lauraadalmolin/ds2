@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Adicionar Produto à Comanda</title>
+</head>
+<body>
+	<form action='/salva_inc' method="post">
+		<select name='idProduto'>
+			<% @vetProduto.each do |produto| %>
+			<option value='<%= produto.idProduto %>'><%=  produto.descricao %></option>
+			<% end %>
+		</select>
+		<select name='idComanda'>
+			<% @vetComanda.each do |comanda| %>
+			<option value='<%= comanda.idComanda %>'><%=  comanda.cliente.nome %>-<%=  comanda.cliente.cpf %></option>
+			<% end %>
+		</select>
+		<input type="submit">
+	</form>
+</body>
+</html>
+

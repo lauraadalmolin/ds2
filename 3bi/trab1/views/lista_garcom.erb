@@ -1,0 +1,33 @@
+<html>
+	<head>
+		<title>Lista de Garcom</title>
+	</head>
+<body>	
+	<table style="border: 1px solid; text-align: center;">
+		<thead>
+			<tr>
+				<td style="border: 1px solid;"> Id </td>
+				<td style="border: 1px solid;"> Nome </td>
+				<td style="border: 1px solid;"> CPF </td>
+				<td style="border: 1px solid;"> Data Ingresso </td>
+				<td style="border: 1px solid;"> Data Desligamento </td>
+				<td>  </td>
+				<td>  </td>
+
+			</tr>
+		</thead>
+		<% @vetGarcom.each do |garcom| %>
+			<tr>
+				<td style="border: 1px solid;"><%=garcom.idGarcom%></td>
+				<td style="border: 1px solid;"><%=garcom.nome%></td>
+				<td style="border: 1px solid;"><%=garcom.cpf%></td>
+				<td style="border: 1px solid;"><%=garcom.dataIngresso%></td>
+				<td style="border: 1px solid;"><%=garcom.dataDesligamento%></td>
+				<td style="border: 1px solid;"><a href="/exclui_garcom/<%=garcom.idGarcom%>">Excluir</td>
+				<td style="border: 1px solid;"><a href="/edita_garcom/<%=garcom.idGarcom%>">Editar</td>
+			</tr>
+		<% end %>
+	</table>
+
+</body>
+</html>

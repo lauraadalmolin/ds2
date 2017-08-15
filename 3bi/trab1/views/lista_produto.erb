@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Lista de Produtos</title>
+</head>
+<body>	
+	<table style='border: 1px solid; text-align: center;'>
+		<thead>
+			<tr>
+				<td style='border: 1px solid;'> Id </td>
+				<td style='border: 1px solid;'> Descrição </td>
+				<td style='border: 1px solid;'> Preço </td>
+				<td></td>
+				<td></td>
+			</tr>
+		</thead>
+		<% @vetProduto.each do |produto| %>
+			<tr>
+				<td style='border: 1px solid;'><%=produto.idProduto%></td>
+				<td style='border: 1px solid;'><%=produto.descricao%></td>
+				<td style='border: 1px solid;'><%=produto.preco%></td>
+				<td style='border: 1px solid;'><a href="/exclui_produto/<%=produto.idProduto%>">Excluir</td>
+				<td style='border: 1px solid;'><a href="/edita_produto/<%=produto.idProduto%>">Editar</td>
+			</tr>
+		<% end %>
+	</table>
+</body>
+</html>
