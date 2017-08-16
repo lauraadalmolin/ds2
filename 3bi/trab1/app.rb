@@ -1,3 +1,12 @@
+=begin
+	O que ainda falta:
+	- Excluir produtos da comanda;
+	- A funcionalidade de encerramento e pagamento de uma comanda;
+	- A listagem dos 3 melhores garçons (Aqueles que atenderam um maior número de mesas ao longo do tempo);
+	- Listagem ordenada dos clientes que mais vieram ao bar;
+	- A listagem das comandas em aberto;
+=end
+
 require 'sinatra'
 require 'erb'
 require './models.rb'
@@ -15,9 +24,7 @@ post '/salva_cliente' do
 	cliente.cpf = params["cpf"]
 	cliente.nome = params["nome"]
 	cliente.comandaAberta = false
-	#Faz o INSERT
 	cliente.save
-
 	redirect '/'
 end
 
@@ -48,11 +55,8 @@ end
 post '/salva_comanda' do
 	comanda = Comanda.new
 	comanda.dataAbertura = params['dataAbertura']
-	if comanda.dataEncerramento = ''
-		comanda.dataEncerramento = nil
-	else
-		comanda.dataEncerramento = params['dataEncerramento']
-	end
+	#uma vez que não faz sentido encerrar uma comanda no momento de sua criação
+	comanda.dataEncerramento = nil
 	idCliente = params['idCliente']
 	cliente = Cliente.get(idCliente)
 	idGarcom = params['idGarcom']
@@ -63,7 +67,6 @@ post '/salva_comanda' do
 	cliente.update(:comandaAberta => true)
 	comanda.save
 	redirect '/'
-	
 end
 
 get '/adiciona_produto' do
@@ -114,7 +117,6 @@ post '/salva_inc' do
 end
 
 get '/exclui_cliente/:id' do
-
 	cliente = Cliente.get(params["id"].to_i)		
 	vetComanda = Comanda.all(:cliente => cliente)		
 	vetComanda.each do |comanda|
@@ -122,7 +124,6 @@ get '/exclui_cliente/:id' do
 	end
 	Comanda.all(:cliente => cliente).destroy
 	cliente.destroy		
-
 	redirect '/lista_cliente'
 end
 
@@ -156,8 +157,6 @@ get '/exclui_produto/:id' do
 		comanda.update(:produtos => vetNovo)
 	end
 	produto.destroy
-	# resolver a exclusão do produto
-
 	redirect '/lista_produto'
 end
 
@@ -180,6 +179,56 @@ get '/exclui_comanda/:id' do
 	redirect '/lista_comanda'
 end
 
+get '/edita_cliente/:id' do
+	@cliente = Cliente.get(params["id"])
+	erb :tela_edita_cliente
+end
+
+post '/salva_edicao_cliente' do
+	cliente = Cliente.get(params["id"])
+	cliente.update(:nome => params["nome"], :cpf => params["cpf"])
+	redirect '/lista_cliente'
+end
+
+get '/edita_garcom/:id' do
+	@garcom = Garcom.get(params["id"])
+	erb :tela_edita_garcom
+end
+
+post '/salva_edicao_garcom' do
+	garcom = Garcom.get(params["id"])
+	if (params["dataDesligamento"] == '')
+		params["dataDesligamento"] = nil
+	end
+	garcom.update(:nome => params["nome"], :cpf => params["cpf"], :dataIngresso => params["dataIngresso"], :dataDesligamento => params["dataDesligamento"])
+	redirect '/lista_garcom'
+end
+
+get '/edita_produto/:id' do
+	@produto = Produto.get(params["id"])
+	erb :tela_edita_produto
+end
+
+post '/salva_edicao_produto' do
+	produto = Produto.get(params["id"])
+	produto.update(:descricao => params["descricao"], :preco => params["preco"])
+	redirect '/lista_produto'
+end
+
+get '/edita_comanda/:id' do
+	@comanda = Comanda.get(params["id"])
+	@vetGarcom = Garcom.all
+	@vetCliente = Cliente.all
+	erb :tela_edita_comanda
+end
+
+post '/salva_edicao_comanda' do
+	comanda = Comanda.get(params["idComanda"])
+	cliente = Cliente.get(params["idCliente"])
+	garcom = Garcom.get(params["idGarcom"])
+	comanda.update(:cliente => cliente, :garcom => garcom)
+	redirect '/lista_comanda'
+end
 
 
 

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Adicionar Comanda</title>
+</head>
+<body>
+	<% if @vetCliente.size != 0 && @vetGarcom.size != 0 %>
+	<form method="post" action="/salva_edicao_comanda">
+		
+			Cliente
+			<select name='idCliente'>
+				<% @vetCliente.each do |cliente| %>
+					<% if cliente.idCliente == @comanda.cliente.idCliente %> 
+						<option selected="selected" value='<%= cliente.idCliente %>'><%=  cliente.nome %>-<%= cliente.cpf %></option>
+					<% else %>
+						<option value='<%= cliente.idCliente %>'><%=  cliente.nome %>-<%= cliente.cpf %></option>
+					<% end %>
+				<% end %>
+			</select>
+		
+			Garçom
+			<select name='idGarcom'>
+				<% @vetGarcom.each do |garcom| %><br>,
+					<% if garcom.idGarcom == @comanda.garcom.idGarcom %> 
+						<option selected="selected"  value='<%= garcom.idGarcom %>'><%=  garcom.nome %>-<%= garcom.cpf %></option>
+					<% else %>
+						<option value='<%= garcom.idGarcom %>'><%=  garcom.nome %>-<%= garcom.cpf %></option>
+					<% end %>
+				<% end %>
+			</select>
+		
+		
+		<br>
+		<input type="hidden" name='idComanda' value="<%=@comanda.idComanda%>">			
+		<input type="submit" value="Enviar">			
+	</form>
+	<% else %>
+		<p>Impossível criar uma comanda (não há garçons ou clientes)</p>
+	<% end %>
+</body>
+</html>

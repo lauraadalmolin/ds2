@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Adicionar Produto</title>
+</head>
+<body>
+	<form method="post" action="/salva_edicao_produto">
+		Preco: <input type="number" name="preco" value="<%= @produto.preco %>">
+		<br>
+		Descrição: <input type="text" name="descricao" value="<%= @produto.descricao %>">
+		<input type="hidden" name="id" value="<%= @produto.idProduto %>">
+		<br>
+		<input type="submit" value="Enviar">
+	</form>
+</body>
+</html>

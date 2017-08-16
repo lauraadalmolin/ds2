@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Adicionar Garçom</title>
+</head>
+<body>
+	<form method="post" action="/salva_edicao_garcom">
+		CPF: <input required type="text" name="cpf" value="<%=@garcom.cpf%>">
+		<br>
+		Nome: <input required type="text" name="nome" value="<%=@garcom.nome%>">
+		<br>
+		Data de Ingresso: <input required type="date" name="dataIngresso" value="<%=@garcom.dataIngresso%>">
+		<br>
+		Data de Desligamento: <input type="date" name="dataDesligamento" value="<%=@garcom.dataDesligamento%>">
+		<input type="hidden" name="id" value="<%=@garcom.idGarcom%>">
+		<br>
+		<input type="submit" value="Submitar">
+	</form>
+</body>
+</html>

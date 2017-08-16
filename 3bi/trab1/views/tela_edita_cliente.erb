@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Editar Cliente</title>
+</head>
+<body>
+	<form method="post" action="/salva_edicao_cliente">
+		CPF: <input type="text" name="cpf" value="<%=@cliente.cpf%>">
+		<br>
+		Nome: <input type="text" name="nome" value="<%=@cliente.nome%>">
+		<input type="hidden" name="id" value="<%=@cliente.idCliente%>">
+		<br>
+		<input type="submit" value="Submitar">
+	</form>
+</body>
+</html>
