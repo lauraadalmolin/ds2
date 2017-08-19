@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Encerramento de Comanda</title>
+</head>
+<body>
+	<h3> Encerramento de Comanda
+
+	<p>Nome do cliente: <%=@comanda.cliente.nome%> </p>
+	<p>Nome do garçom: <%=@comanda.garcom.nome%></p>
+	<p>Data de encerramento: <%=@dataAbertura%></p>
+	<ul>Produtos
+		<% @comanda.produtos.each do |produto| %>
+			<li>
+				<p>Produto: <%= produto.descricao %></p>
+				<p>Preço: R$<%= produto.preco.to_s.gsub('.', ',') %></p>
+				<p><a href="/salva_remove_produto_comanda/<%= produto.idProduto %>/<%= @comanda.idComanda %>">Remover</a></p>
+			</li>
+		<% end %>
+	</ul>
+	<p><b>Total: R$<%=@precoTotal.to_s.gsub('.',',')%></b></p>
+	<a href='/salva_encerramento_comanda/<%=@comanda.idComanda%>'>Pagar comanda e encerrá-la</a>
+</body>
+</html>

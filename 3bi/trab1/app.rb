@@ -1,10 +1,6 @@
 =begin
 	O que ainda falta:
-	- Excluir produtos da comanda;
-	- A funcionalidade de encerramento e pagamento de uma comanda;
-	- A listagem dos 3 melhores garçons (Aqueles que atenderam um maior número de mesas ao longo do tempo);
 	- Listagem ordenada dos clientes que mais vieram ao bar;
-	- A listagem das comandas em aberto;
 =end
 
 require 'sinatra'
@@ -230,5 +226,66 @@ post '/salva_edicao_comanda' do
 	redirect '/lista_comanda'
 end
 
+get '/remove_produto_comanda/:id' do
+	@comanda = Comanda.get(params["id"])
+	erb :tela_remove_produto
+end
 
+get '/salva_remove_produto_comanda/:idProduto/:idComanda' do
+	comanda = Comanda.get(params["idComanda"]);
+	vet = []
+	comanda.produtos.each do |produto|
+		if produto.idProduto == params["idProduto"]
+			vet.push(produto)
+		end
+	end
+	comanda.update(:produtos => vet)
+	redirect '/lista_comanda'
+end
 
+get '/encerra_comanda/:id' do 
+	@comanda = Comanda.get(params["id"])
+	@precoTotal = 0
+	@dataAbertura = @comanda.dataAbertura.to_s.gsub('T', ' | ')
+	@dataAbertura = @dataAbertura.to_s.gsub('T', ' ')[0,18]
+	@comanda.produtos.each do |produto|
+		@precoTotal = produto.preco + @precoTotal
+	end
+	erb :encerra_comanda
+end
+
+get '/salva_encerramento_comanda/:id' do
+	timestamp = Time.now.getutc.to_s.gsub(' UTC', '')
+	comanda = Comanda.get(params['id'])
+	idCliente = comanda.cliente.idCliente
+	cliente = Cliente.get(idCliente)
+	cliente.update(:comandaAberta => false);
+	comanda.update(:dataEncerramento => timestamp, :encerrada => true)
+end
+
+get '/lista_comandas_em_aberto' do
+	@vetComanda = Comanda.all(:encerrada => false)
+	erb :lista_comandas_em_aberto
+end
+
+get '/lista_melhores_garcons' do
+	rs = repository(:default).adapter.select("SELECT g.id_garcom as id " +
+											"FROM garcoms g INNER JOIN comandas c ON (c.garcom_id_garcom = g.id_garcom) "+
+											"WHERE data_desligamento IS NULL GROUP BY g.id_garcom ORDER BY COUNT(g.id_garcom) DESC LIMIT 3 ")
+	@vetGarcom = []
+	rs.each do |registro|
+		@vetGarcom.push(Garcom.get(registro.to_i))
+	end
+	erb :lista_garcom
+end
+
+get '/lista_clientela_frequente' do
+	rs = repository(:default).adapter.select("SELECT cl.id_cliente as id " +
+											"FROM clientes cl INNER JOIN comandas c ON (c.cliente_id_cliente = cl.id_cliente) "+
+											"GROUP BY cl.id_cliente ORDER BY COUNT(cl.id_cliente) DESC ")
+	@vetCliente = []
+	rs.each do |registro|
+		@vetCliente.push(Cliente.get(registro.to_i))
+	end
+	erb :lista_cliente
+end

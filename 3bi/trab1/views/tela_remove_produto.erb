@@ -1,0 +1,20 @@
+<html>
+	<head>
+		<title>Comanda</title>
+	</head>
+<body>	
+
+	<p>Nome do cliente: <%=@comanda.cliente.nome%> </p>
+	<p>Nome do garçom: <%=@comanda.garcom.nome%></p>
+	<ul>Produtos
+		<% @comanda.produtos.each do |produto| %>
+			<li>
+				<p>Produto: <%= produto.descricao %></p>
+				<p>Preço: R$<%= produto.preco.to_s.gsub('.', ',') %></p>
+				<p><a href="/salva_remove_produto_comanda/<%= produto.idProduto %>/<%= @comanda.idComanda %>">Remover</a></p>
+			</li>
+		<% end %>
+	</ul>
+
+
+</html>
