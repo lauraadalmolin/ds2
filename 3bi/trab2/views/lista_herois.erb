@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Lista de Heróis</title>
+</head>
+<body>	
+	<h1>Heróis</h1>
+	<table style='border: 1px solid; text-align: center;'>
+		<thead>
+			<tr>
+				<td style='border: 1px solid;'> Id </td>
+				<td style='border: 1px solid;'> Nome </td>
+				<td style='border: 1px solid;'> Nome Verdadeiro </td>
+				<td style='border: 1px solid;'> Equipe </td>
+				<td style='border: 1px solid;'> Tipo </td>
+				<td style='border: 1px solid;'> Habilidades </td>
+				<td>  </td>
+				<td>  </td>
+				<td>  </td>
+
+			</tr>
+		</thead>
+		<% @vetHeroi.each do |heroi| %>
+			<tr>
+				<td style='border: 1px solid;'><%=heroi.id%></td>
+				<td style='border: 1px solid;'><%=heroi.nome%></td>
+				<td style='border: 1px solid;'><%=heroi.nomeVerdadeiro%></td>
+				<td style='border: 1px solid;'><%=heroi.equipe.nome%></td>
+				<td style='border: 1px solid;'><%=heroi.type%></td>
+				<td style='border: 1px solid;'>
+					<% heroi.habilidades.each do |habilidade| %>
+					   	<%= habilidade.nome%> | Impacto: <%= habilidade.nivelImpacto %><br>
+					 <% end %>
+				</td>
+				<td style='border: 1px solid;'><a href="/exclui_habilidade_heroi/<%=heroi.id%>">Excluir Habilidade</td>
+				<td style='border: 1px solid;'><a href="/exclui_heroi/<%=heroi.id%>">Excluir</td>
+				<td style='border: 1px solid;'><a href="/edita_heroi/<%=heroi.id%>">Editar</td>
+			</tr>
+
+		<% end %>
+	</table>
+
+</body>
+</html>

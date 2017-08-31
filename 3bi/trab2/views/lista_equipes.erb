@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Lista de Equipes</title>
+</head>
+<body>	
+	<h1>Equipes</h1>
+	<table style='border: 1px solid; text-align: center;'>
+		<thead>
+			<tr>
+				<td style='border: 1px solid;'> Id </td>
+				<td style='border: 1px solid;'> Nome </td>
+				<td style='border: 1px solid;'> Heróis </td>
+				<td>  </td>
+				<td>  </td>
+			</tr>
+		</thead>
+		<% @vetEquipe.each do |equipe| %>
+			<tr>
+				<td style='border: 1px solid;'><%=equipe.id%></td>
+				<td style='border: 1px solid;'><%=equipe.nome%></td>
+				<td style='border: 1px solid;'>
+					<% equipe.herois.each do |heroi| %>
+					   	<%= heroi.nome%><br>
+					 <% end %>
+				</td>
+				<td style='border: 1px solid;'><a href="/exclui_equipe/<%=equipe.id%>">Excluir</td>
+				<td style='border: 1px solid;'><a href="/edita_equipe/<%=equipe.id%>">Editar</td>
+			</tr>
+		<% end %>
+	</table>
+
+</body>
+</html>

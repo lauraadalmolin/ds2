@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Edita Equipe</title>
+</head>
+<body>	
+	<h1>Edita Equipe</h1>
+	<form method="post" action="/salva_edicao_equipe">
+		<input type="text" placeholder="Nome" name="nome" value="<%= @equipe.nome%>"><br>
+		<input type="hidden" name="id" value="<%= @equipe.id%>"><br>
+		<input type="submit">
+	</form>
+</body>
+</html>

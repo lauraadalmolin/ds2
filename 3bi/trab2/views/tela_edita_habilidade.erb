@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Edita Habilidade</title>
+</head>
+<body>	
+	<h1>Edita Habilidade</h1>
+	<form method="post" action="/salva_edicao_habilidade">
+		<input type="text" placeholder="Nome" name="nome" value="<%=@habilidade.nome%>"><br>
+		<input type="text" placeholder="Descrição" name="descricao" value="<%=@habilidade.descricao%>"><br>
+		<select name='impacto'>
+
+			<option value="leve">
+				Leve
+			</option>
+			<option value="moderado">
+				Moderado
+			</option>
+			<option value="forte">
+				Forte
+			</option>
+		</select>
+		<input type="hidden" value="<%=@habilidade.id%>" name="id">
+		<input type="submit">
+	</form>
+</body>
+</html>

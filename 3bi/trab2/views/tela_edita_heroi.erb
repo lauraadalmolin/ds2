@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Adiciona Herói</title>
+</head>
+<body>	
+	<h1>Adicionar Herói</h1>
+	<form method="post" action="/salva_edicao_heroi">
+			
+		Equipe
+		<select name='id_equipe'>
+			<% @vetEquipe.each do |equipe| %>
+				<%if equipe == @heroi.equipe %>
+					<option selected value='<%= equipe.id %>'><%=  equipe.nome %></option>
+				<%else%>
+					<option value='<%= equipe.id %>'><%=  equipe.nome %></option>
+				<%end%>
+			<% end %>
+		</select><br>
+		<input type="text" placeholder="Nome" name="nome" value="<%=@heroi.nome%>"><br>
+		<input type="text" placeholder="Nome Verdadeiro" name="nomeVerdadeiro" value="<%=@heroi.nomeVerdadeiro%>"><br>
+		<input type="hidden" value="<%=@heroi.id%>" name="id"><br>
+		<input type="submit">
+	</form>
+</body>
+</html>

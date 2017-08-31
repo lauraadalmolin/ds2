@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Adicionar Habilidade ao Herói</title>
+</head>
+<body>
+	<form action='/salva_inc' method="post">
+		<select name='id_habilidade'>
+			<% @vetHabilidade.each do |habilidade| %>
+			<option value='<%= habilidade.id %>'><%=  habilidade.nome%> | <%= habilidade.nivelImpacto %></option>
+			<% end %>
+		</select>
+		<select name='id_heroi'>
+			<% @vetHeroi.each do |heroi| %>
+			<option value='<%= heroi.id %>'><%=  heroi.nome %></option>
+			<% end %>
+		</select>
+		<input type="submit">
+	</form>
+</body>
+</html>

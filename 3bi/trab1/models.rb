@@ -73,8 +73,8 @@ DataMapper.finalize
 #migrate da drop na tabela caso tenha alguma mudança nos atributos do modelo e cria uma nova
 
 
-#DataMapper.auto_migrate!
+DataMapper.auto_migrate!
 
 #upgrade faz a mesma coisa que o migrate porém não exclui
 #as tabelas antigas quando há mudança, só as atualiza
-#DataMapper.auto_upgrade!
+DataMapper.auto_upgrade!

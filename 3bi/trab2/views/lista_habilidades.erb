@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Lista de Habiliddes</title>
+</head>
+<body>	
+	<h1>Habilidades</h1>
+	<table style='border: 1px solid; text-align: center;'>
+		<thead>
+			<tr>
+				<td style='border: 1px solid;'> Id </td>
+				<td style='border: 1px solid;'> Nome </td>
+				<td style='border: 1px solid;'> Nível de Impacto </td>
+				<td style='border: 1px solid;'> Descrição </td>
+				<td>  </td>
+				<td>  </td>
+
+			</tr>
+		</thead>
+		<% @vetHabilidade.each do |habilidade| %>
+			<tr>
+				<td style='border: 1px solid;'><%=habilidade.id%></td>
+				<td style='border: 1px solid;'><%=habilidade.nome%></td>
+				<td style='border: 1px solid;'><%=habilidade.nivelImpacto%></td>
+				<td style='border: 1px solid;'><%=habilidade.descricao%></td>
+				<td style='border: 1px solid;'><a href="/exclui_habilidade/<%=habilidade.id%>">Excluir</td>
+				<td style='border: 1px solid;'><a href="/edita_habilidade/<%=habilidade.id%>">Editar</td>
+			</tr>
+		<% end %>
+	</table>
+
+</body>
+</html>

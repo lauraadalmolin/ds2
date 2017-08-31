@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Adiciona Herói</title>
+</head>
+<body>	
+	<h1>Adicionar Herói</h1>
+	<form method="post" action="/salva_heroi">
+		Terrestre: <input checked type="radio" name="tipo" value="1"><br>
+		Extraterrestre: <input type="radio" name="tipo" value="2"><br>
+		Equipe
+		<select name='id_equipe'>
+			<% @vetEquipe.each do |equipe| %>
+			<option value='<%= equipe.id %>'><%=  equipe.nome %></option>
+			<% end %>
+		</select><br>
+	<input type="text" placeholder="Nome" name="nome"><br>
+		<input type="text" placeholder="Nome Verdadeiro" name="nomeVerdadeiro"><br>
+		<input type="submit">
+	</form>
+</body>
+</html>

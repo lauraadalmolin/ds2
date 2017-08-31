@@ -1,0 +1,21 @@
+<html>
+	<head>
+		<title>Herói</title>
+	</head>
+<body>	
+
+	<p>Nome do herói: <%=@heroi.nome%> </p>
+	<ul>Habilidades
+		<% @heroi.habilidades.each do |habilidade| %>
+			<li>
+				<p>Habilidade: <%= habilidade.nome %></p>
+				<p>Impacto: <%= habilidade.nivelImpacto %></p>
+				<p>Impacto: <%= habilidade.id %></p>
+
+				<p><a href="/salva_remove_habilidade_heroi/<%= habilidade.id %>/<%= @heroi.id%>">Remover</a></p>
+			</li>
+		<% end %>
+	</ul>
+
+
+</html>
