@@ -1,6 +1,8 @@
 require "data_mapper"
 require "dm-migrations"
 
+#para o código funcionar é necessário fazer o seguinte insert : "INSERT INTO usuarios VALUES (DEFAULT, 'administrador', 'admin', '1234')"
+
 DataMapper.setup(:default, 'postgres://postgres:postgres@localhost/googlekeep')
 
 class Usuario 
